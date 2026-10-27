@@ -10,7 +10,7 @@ public class Heroe
     private int danyoMagico;
     
 
-    public Heroe(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo)
+    public Heroe(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo,int danyoMagico)
     {
         this.nombre = nombre;
         this.vida = vida;
