@@ -1,5 +1,5 @@
 import java.util.concurrent.ThreadLocalRandom;
-public class Heroe 
+public class Personaje 
 {
 
     private String nombre;
@@ -10,7 +10,7 @@ public class Heroe
     private int danyoMagico;
     
 
-    public Heroe(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo,int danyoMagico)
+    public Personaje(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo,int danyoMagico)
     {
         this.nombre = nombre;
         this.vida = vida;
@@ -21,7 +21,7 @@ public class Heroe
     }
 
 
-    public Heroe(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo)
+    public Personaje(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo)
     {
         this.nombre = nombre;
         this.vida = vida;
@@ -101,6 +101,23 @@ public class Heroe
     {
         int danyoBase = ThreadLocalRandom.current().nextInt(ataqueMinimo, ataqueMaximo +1);
         return danyoBase + danyoMagico;
+    }
+
+    public int atacarCritico()
+    {
+        int critico = ThreadLocalRandom.current().nextInt(1, 21);
+        int danyoCritico;
+        if(critico == 20)
+            {
+                danyoCritico = 3;
+            }
+            else
+                {
+                    danyoCritico = 0;
+                }
+        
+        int danyoBaseCritico = ThreadLocalRandom.current().nextInt(ataqueMinimo, ataqueMaximo +1) + danyoCritico;
+        return danyoBaseCritico;
     }
 
 }

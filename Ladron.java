@@ -1,4 +1,4 @@
-public class Ladron extends Heroe
+public class Ladron extends Personaje
 {
     public Ladron(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo)
     {
