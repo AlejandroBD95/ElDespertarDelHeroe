@@ -111,10 +111,10 @@ public class Personaje
             {
                 danyoCritico = 3;
             }
-            else
-                {
-                    danyoCritico = 0;
-                }
+        else
+            {
+                danyoCritico = 0;
+            }
         
         int danyoBaseCritico = ThreadLocalRandom.current().nextInt(ataqueMinimo, ataqueMaximo +1) + danyoCritico;
         return danyoBaseCritico;
