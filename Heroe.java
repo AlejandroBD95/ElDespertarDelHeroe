@@ -1,7 +1,7 @@
 import java.util.concurrent.ThreadLocalRandom;
 public class Heroe 
 {
-    
+
     private String nombre;
     private int vida;
     private int armadura;
@@ -20,9 +20,14 @@ public class Heroe
         this.danyoMagico = danyoMagico; 
     }
 
-        public Heroe(String nombre)
+
+    public Heroe(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo)
     {
         this.nombre = nombre;
+        this.vida = vida;
+        this.armadura = armadura;
+        this.ataqueMinimo = ataqueMinimo;
+        this.ataqueMaximo = ataqueMaximo;
     }
 
     public String getNombre()

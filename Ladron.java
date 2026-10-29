@@ -1,7 +1,7 @@
 public class Ladron extends Heroe
 {
-    public Ladron(String nombre, int vida, int ataqueMinimo,int ataqueMaximo)
+    public Ladron(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo)
     {
-        super(nombre);
+        super( nombre,  vida,  armadura,  ataqueMinimo,  ataqueMaximo);
     }
 }
