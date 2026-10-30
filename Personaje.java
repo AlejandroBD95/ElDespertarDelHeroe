@@ -120,4 +120,21 @@ public class Personaje
         return danyoBaseCritico;
     }
 
+    public int bossFinalAtacar()
+    {
+        int critico = ThreadLocalRandom.current().nextInt(1, 21);
+        int danyoCritico;
+        if(critico == 20)
+            {
+                danyoCritico = 3;
+            }
+        else
+            {
+                danyoCritico = 0;
+            }
+        
+        int danyoBossFinal = ThreadLocalRandom.current().nextInt(ataqueMinimo, ataqueMaximo +1) + danyoCritico + danyoMagico;
+        return danyoBossFinal;
+    }
+
 }

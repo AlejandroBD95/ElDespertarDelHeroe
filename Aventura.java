@@ -60,42 +60,42 @@ public class Aventura
     sc.close();
     }
     public static int seleccionarHeroe(Scanner sc)
-            {
-            Guerrero guerrero = new Guerrero("Guerrero", 100, 2, 5, 15);
-            Ladron ladron = new Ladron("Ladron", 80, 0, 10, 20);
-            Mago mago = new Mago("Mago", 80, 0, 5, 15, 2);
+        {
+        Guerrero guerrero = new Guerrero("Guerrero", 100, 2, 5, 15);
+        Ladron ladron = new Ladron("Ladron", 80, 0, 10, 20);
+        Mago mago = new Mago("Mago", 80, 0, 5, 15, 2);
             
-                System.out.println("\n");
-                System.out.println("Selecciona el Heroe");
-                System.out.println("1.Guerrero");
-                guerrero.mostrarEstadisticas();
-                System.out.println("\n");
+            System.out.println("\n");
+            System.out.println("Selecciona el Heroe");
+            System.out.println("1.Guerrero");
+            guerrero.mostrarEstadisticas();
+            System.out.println("\n");
 
-                System.out.println("2.Ladron");
-                ladron.mostrarEstadisticas();
-                System.out.println("\n");
+            System.out.println("2.Ladron");
+            ladron.mostrarEstadisticas();
+            System.out.println("\n");
                 
-                System.out.println("3.Mago");
-                mago.mostrarEstadisticas();
-                System.out.println("\n");
+            System.out.println("3.Mago");
+            mago.mostrarEstadisticas();
+            System.out.println("\n");
 
-                int seleccionHeroe = sc.nextInt();
+            int seleccionHeroe = sc.nextInt();
 
-                switch (seleccionHeroe) 
-                {
-                    case 1:
-                        System.out.println("Has escogido al guerrero");
-                    break;
-                    case 2:
-                        System.out.println("Has escogido al ladron");
-                    break;
-                    case 3:
-                        System.out.println("Has escogido al mago");
-                    break;
-                    default:
-                        System.out.println("Valor no registrado");
-                    break;
-                }
-                return seleccionHeroe;
+            switch (seleccionHeroe) 
+            {
+                case 1:
+                    System.out.println("Has escogido al guerrero");
+                break;
+                case 2:
+                    System.out.println("Has escogido al ladron");
+                break;
+                case 3:
+                    System.out.println("Has escogido al mago");
+                break;
+                default:
+                    System.out.println("Valor no registrado");
+                break;
             }
+            return seleccionHeroe;
+        }
 }
