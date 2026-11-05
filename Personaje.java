@@ -8,6 +8,7 @@ public class Personaje
     private int ataqueMinimo;
     private int ataqueMaximo;
     private int danyoMagico;
+    private Inventario inventario;
     
 
     public Personaje(String nombre, int vida, int armadura, int ataqueMinimo, int ataqueMaximo,int danyoMagico)
@@ -18,6 +19,7 @@ public class Personaje
         this.ataqueMinimo = ataqueMinimo;
         this.ataqueMaximo = ataqueMaximo;
         this.danyoMagico = danyoMagico; 
+        this.inventario = new Inventario(3);
     }
 
 
@@ -28,6 +30,7 @@ public class Personaje
         this.armadura = armadura;
         this.ataqueMinimo = ataqueMinimo;
         this.ataqueMaximo = ataqueMaximo;
+        this.inventario = new Inventario(3);
     }
 
     public String getNombre()
@@ -94,7 +97,8 @@ public class Personaje
 
     public int atacar()
     {
-        return ThreadLocalRandom.current().nextInt(ataqueMinimo, ataqueMaximo +1);
+        int danyoBase = ThreadLocalRandom.current().nextInt(ataqueMinimo, ataqueMaximo +1);
+        return danyoBase;
     }
 
     public int atacarMagia()
@@ -136,5 +140,8 @@ public class Personaje
         int danyoBossFinal = ThreadLocalRandom.current().nextInt(ataqueMinimo, ataqueMaximo +1) + danyoCritico + danyoMagico;
         return danyoBossFinal;
     }
+
+
+
 
 }

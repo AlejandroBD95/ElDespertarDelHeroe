@@ -26,7 +26,7 @@ public class Aventura
                 {
                    case 1:
                         System.out.println("Iniciando partida");
-                        int heroeEscogido = seleccionarHeroe(sc);
+                        Personaje heroe = seleccionarHeroe(sc);
                         System.out.println("");
                     break;
                     case 2:
@@ -59,12 +59,12 @@ public class Aventura
         
     sc.close();
     }
-    public static int seleccionarHeroe(Scanner sc)
+    public static Personaje seleccionarHeroe(Scanner sc)
         {
         Guerrero guerrero = new Guerrero("Guerrero", 100, 2, 5, 15);
         Ladron ladron = new Ladron("Ladron", 80, 0, 10, 20);
         Mago mago = new Mago("Mago", 80, 0, 5, 15, 2);
-            
+        Personaje heroe = new Personaje(null, 0, 0, 0, 0); 
             System.out.println("\n");
             System.out.println("Selecciona el Heroe");
             System.out.println("1.Guerrero");
@@ -84,18 +84,23 @@ public class Aventura
             switch (seleccionHeroe) 
             {
                 case 1:
+                    heroe = new Guerrero("Guerrero", 100, 2, 5, 15);
                     System.out.println("Has escogido al guerrero");
                 break;
                 case 2:
+                    heroe = new Ladron("Ladron", 80, 0, 10, 20);
                     System.out.println("Has escogido al ladron");
                 break;
                 case 3:
+                    heroe = new Mago("Mago", 80, 0, 5, 15, 2);
                     System.out.println("Has escogido al mago");
                 break;
                 default:
                     System.out.println("Valor no registrado");
                 break;
             }
-            return seleccionHeroe;
+            return heroe;
         }
+
+        
 }
