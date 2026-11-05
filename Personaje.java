@@ -87,6 +87,15 @@ public class Personaje
         this.danyoMagico = danyoMagico;
     }
 
+    public Inventario getInventario()
+    {
+        return this.inventario;
+    }
+    public void setInventario( Inventario inventario)
+    {
+        this.inventario = inventario;
+    }
+
     public void mostrarEstadisticas()
     {
         System.out.println("Héroe "+ nombre);

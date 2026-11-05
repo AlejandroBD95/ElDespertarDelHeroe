@@ -9,6 +9,7 @@ public class Aventura
         System.out.println("********** --------------------------------- **********");
 
         Scanner sc = new Scanner(System.in);
+        Personaje heroe = new Personaje(null, 0, 0, 0, 0); 
         System.out.println("\n");
 
         int eleccionMenu ;
@@ -26,7 +27,7 @@ public class Aventura
                 {
                    case 1:
                         System.out.println("Iniciando partida");
-                        Personaje heroe = seleccionarHeroe(sc);
+                        heroe = seleccionarHeroe(sc);
                         System.out.println("");
                     break;
                     case 2:
@@ -55,7 +56,9 @@ public class Aventura
                 }
             }
         while (eleccionMenu != 1 && eleccionMenu != 4);
-        
+
+        Boss1 boss1 = new Boss1("Ula'tek", 100, 0, 5, 15);
+        Combate.luchar(heroe, boss1);
         
     sc.close();
     }
