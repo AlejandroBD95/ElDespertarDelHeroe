@@ -36,10 +36,4 @@ public class Objeto
     {
         this.cantidadSanacion = cantidadSanacion;
     }
-
-    Objeto pocion = new Objeto("poción de sanación", 25, "poción revitalizante que ayuda a curar heridas");
-
-
-
-
 }

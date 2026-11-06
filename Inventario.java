@@ -20,7 +20,7 @@ public class Inventario
                 System.out.print("-> Has guardado una " + nuevoObjeto.getNombreObjeto() + " en el bolsillo de la mochila [" + (i + 1) + "]! <-");
                 return;
             }
-            System.out.println("-> Bolsillo lleno, no puedes llevar más pociones <-");
+            System.out.println("-> Bolsillo lleno <-");
         }
     }
 
@@ -30,7 +30,7 @@ public class Inventario
         {
             if (items[i] != null)
             {
-                System.out.println("-> Bolsillo de la mochila [" + (i+1) +"]" + items[i]);
+                System.out.println("-> Bolsillo de la mochila [" + (i+1) +"] " + items[i].getNombreObjeto());
             }
             else
             {
@@ -51,12 +51,14 @@ public class Inventario
             if(items[seleccionPocion] != null)
             {
                 System.out.println("-> Has consumido la " + items[seleccionPocion].getNombreObjeto() + " del bolsillo [" + (seleccionPocion + 1) + "]");
-                items[seleccionPocion] = null;
                 heroe.curar(items[seleccionPocion].getCantidadSanacion());
+                items[seleccionPocion] = null;
                 if (heroe.getVida() > 100)
                 {
                     heroe.setVida(100);
                 }
+                System.out.println("Te tomas una poción curandote hasta llegar a " + heroe.getVida() + "PV");
+                System.out.println(" ");
             }
             else
             {

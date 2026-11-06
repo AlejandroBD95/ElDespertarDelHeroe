@@ -4,6 +4,7 @@ public class Aventura
     
     public static void main(String[] args)
     {
+        boolean jugarOtravez = true;
         System.out.println("********** --------------------------------- **********");
         System.out.println("********** BIENVENIDO AL DESPERTAR DEL HEROE **********");
         System.out.println("********** --------------------------------- **********");
@@ -12,71 +13,99 @@ public class Aventura
         Personaje heroe = new Personaje(null, 0, 0, 0, 0); 
         System.out.println("\n");
 
-        int eleccionMenu ;
-        do 
-            {
-            
-            System.out.println("1.Nueva partida");
-            System.out.println("2.Ver clasificación");
-            System.out.println("3.Ayuda");
-            System.out.println("4.Salir");
-            System.out.println("\n");
-            System.out.println("Escoge una opción");
-            eleccionMenu = sc.nextInt();
-                switch (eleccionMenu) 
+        while(jugarOtravez)
+        {
+    
+            int eleccionMenu ;
+            do 
                 {
-                   case 1:
-                        System.out.println("Iniciando partida");
-                        heroe = seleccionarHeroe(sc);
-                        System.out.println("");
-                    break;
-                    case 2:
-                        System.out.println("Mostrando clasificación");
-                        System.out.println("");
-                    break;
-                    case 3:
-                        System.out.println("Mostrando ayuda");
-                        System.out.println("\n");
-                        System.out.println("---GLOSARIO DE NOMBRES---");
-                        System.out.println("");
-                        System.out.println("PV = Puntos de Vida");
-                        System.out.println("PD = Puntos de Defensa");
-                        System.out.println("PA = Puntos de Ataque");
-                        System.out.println("");
-                        System.out.println("---GLOSARIO DE NOMBRES---");
-                        System.out.println("\n");
-                    break;
-                    case 4:
-                        System.out.println("Saliendo de la aventura");
-                        System.out.println("");
-                    break;
-                    default:
-                        System.out.println("Valor no controlado");
-                        System.out.println("");
+                
+                System.out.println("1.Nueva partida");
+                System.out.println("2.Ver clasificación");
+                System.out.println("3.Ayuda");
+                System.out.println("4.Salir");
+                System.out.println("\n");
+                System.out.println("Escoge una opción");
+                eleccionMenu = sc.nextInt();
+                    switch (eleccionMenu) 
+                    {
+                    case 1:
+                            System.out.println("Iniciando partida");
+                            heroe = seleccionarHeroe(sc);
+                            System.out.println("");
+                        break;
+                        case 2:
+                            System.out.println("Mostrando clasificación");
+                            System.out.println("");
+                        break;
+                        case 3:
+                            System.out.println("Mostrando ayuda");
+                            System.out.println("\n");
+                            System.out.println("---GLOSARIO DE NOMBRES---");
+                            System.out.println("");
+                            System.out.println("PV = Puntos de Vida");
+                            System.out.println("PD = Puntos de Defensa");
+                            System.out.println("PA = Puntos de Ataque");
+                            System.out.println("Poción de sanación: cura 25 PV");
+                            System.out.println("");
+                            System.out.println("---GLOSARIO DE NOMBRES---");
+                            System.out.println("\n");
+                        break;
+                        case 4:
+                            System.out.println("Saliendo de la aventura");
+                            System.out.println("");
+                        break;
+                        default:
+                            System.out.println("Valor no controlado");
+                            System.out.println("");
+                    }
                 }
-            }
-        while (eleccionMenu != 1 && eleccionMenu != 4);
+            while (eleccionMenu != 1 && eleccionMenu != 4);
+            if(eleccionMenu == 1)
+            {
+                System.out.println("**************************");
+                System.out.println("COMIENZA LA AVENTURA");
+                System.out.println("**************************");
+                prepararHeroe(heroe);
+                System.out.println("");
 
-        System.out.println("**************************");
-        System.out.println("COMIENZA LA AVENTURA");
-        System.out.println("**************************");
-        System.out.println("");
+                Historia.introduccion();
+                Historia.combate1();
 
-        Historia.introduccion();
-        Historia.combate1();
+                BossGuerrero boss1 = new BossGuerrero("Maestro de armas Harlan", 40, 2, 5, 15);
+                Combate.luchar(heroe, boss1);
+                if(heroe.getVida() <= 0)
+                {
+                    jugarOtravez = reiniciarPartida(sc);
+                    continue;
+                }
 
-        BossGuerrero boss1 = new BossGuerrero("Maestro de armas Harlan", 40, 2, 5, 15);
-        Combate.luchar(heroe, boss1);
-
-        Historia.combate2();
-        BossMago boss2 = new BossMago("Tejedor de fuego Koegler", 60, 0, 10, 15, 2);
-        Combate.luchar(heroe, boss2);
-        
-        Historia.combate3();
-        BossFinal bossFinal = new BossFinal("Comandante Durand", 80, 2, 10, 20, 3);
-        Combate.luchar(heroe, bossFinal);
-
-    sc.close();
+                Historia.combate2();
+                BossMago boss2 = new BossMago("Tejedor de fuego Koegler", 60, 0, 10, 15, 2);
+                Combate.luchar(heroe, boss2);
+                if(heroe.getVida() <= 0)
+                {
+                    jugarOtravez = reiniciarPartida(sc);
+                    continue;
+                }
+                
+                Historia.combate3();
+                BossFinal bossFinal = new BossFinal("Comandante Durand", 80, 2, 10, 20, 3);
+                Combate.luchar(heroe, bossFinal);
+                if(heroe.getVida() <= 0)
+                {
+                    jugarOtravez = reiniciarPartida(sc);
+                    continue;
+                }
+                else if(heroe.getVida() >= 0)
+                {
+                    System.out.println("!ENHORABUENA HAS COMPLETADO LA AVENTURA");
+                }
+                jugarOtravez = reiniciarPartida(sc);
+                }
+            jugarOtravez = reiniciarPartida(sc);
+        sc.close();
+        }
     }
     public static Personaje seleccionarHeroe(Scanner sc)
         {
@@ -120,4 +149,24 @@ public class Aventura
             }
             return heroe;
         }
+    public static void prepararHeroe(Personaje heroe)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+        heroe.getInventario().agregarObjeto(new Objeto("poción de sanación", 25, "Poción revitalizante que cura heridas"));
+        }
+    }
+
+    public static boolean reiniciarPartida(Scanner sc)
+    {
+        System.out.println("");
+        System.out.println("¿Desea jugar de nuevo?");
+        System.out.println("1. Si");
+        System.out.println("2. No");
+
+        int opcionPartida = sc.nextInt();
+
+        return opcionPartida == 1;
+    }
+
 }

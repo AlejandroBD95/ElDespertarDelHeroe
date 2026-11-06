@@ -11,7 +11,7 @@ public class Combate
             do 
             {
                 System.out.println("****************************************");
-                System.out.println("------------TURNO" + turno);
+                System.out.println("------------TURNO " + turno);
                 System.out.println("------------1.Revisar inventario");
                 System.out.println("------------2.Tomar una poción");
                 System.out.println("------------3.Atacar");
@@ -60,11 +60,15 @@ public class Combate
             turno++;
             if (boss1.getVida() == 0)
             {
-                System.out.println("Has derrotado a " + boss1.getNombre() + "!!!");
+                System.out.println("     ***     ");
+                System.out.println("HAS DERROTADO A " + boss1.getNombre() + "!!!");
+                System.out.println("     ***     ");
             }
             else if (heroe.getVida() == 0)
             {
+                System.out.println("     ***     ");
                 System.out.println("Has sido derrotado...");
+                System.out.println("     ***     ");
                 Historia.derrota();
             }
         }     
