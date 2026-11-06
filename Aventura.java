@@ -57,30 +57,46 @@ public class Aventura
             }
         while (eleccionMenu != 1 && eleccionMenu != 4);
 
-        Boss1 boss1 = new Boss1("Ula'tek", 100, 0, 5, 15);
+        System.out.println("**************************");
+        System.out.println("COMIENZA LA AVENTURA");
+        System.out.println("**************************");
+        System.out.println("");
+
+        Historia.introduccion();
+        Historia.combate1();
+
+        BossGuerrero boss1 = new BossGuerrero("Maestro de armas Harlan", 40, 2, 5, 15);
         Combate.luchar(heroe, boss1);
+
+        Historia.combate2();
+        BossMago boss2 = new BossMago("Tejedor de fuego Koegler", 60, 0, 10, 15, 2);
+        Combate.luchar(heroe, boss2);
         
+        Historia.combate3();
+        BossFinal bossFinal = new BossFinal("Comandante Durand", 80, 2, 10, 20, 3);
+        Combate.luchar(heroe, bossFinal);
+
     sc.close();
     }
     public static Personaje seleccionarHeroe(Scanner sc)
         {
         Guerrero guerrero = new Guerrero("Guerrero", 100, 2, 5, 15);
-        Ladron ladron = new Ladron("Ladron", 80, 0, 10, 20);
+        Ladron ladron = new Ladron("Ladron", 75, 0, 10, 20);
         Mago mago = new Mago("Mago", 80, 0, 5, 15, 2);
         Personaje heroe = new Personaje(null, 0, 0, 0, 0); 
             System.out.println("\n");
             System.out.println("Selecciona el Heroe");
             System.out.println("1.Guerrero");
             guerrero.mostrarEstadisticas();
-            System.out.println("\n");
+            System.out.println("");
 
             System.out.println("2.Ladron");
             ladron.mostrarEstadisticas();
-            System.out.println("\n");
+            System.out.println("");
                 
             System.out.println("3.Mago");
             mago.mostrarEstadisticas();
-            System.out.println("\n");
+            System.out.println("");
 
             int seleccionHeroe = sc.nextInt();
 
@@ -104,6 +120,4 @@ public class Aventura
             }
             return heroe;
         }
-
-        
 }

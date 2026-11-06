@@ -96,6 +96,11 @@ public class Personaje
         this.inventario = inventario;
     }
 
+    public void curar(int cantidad)
+    {
+        this.vida = this.vida + cantidad;
+    }
+
     public void mostrarEstadisticas()
     {
         System.out.println("Héroe "+ nombre);

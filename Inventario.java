@@ -20,7 +20,7 @@ public class Inventario
                 System.out.print("-> Has guardado una " + nuevoObjeto.getNombreObjeto() + " en el bolsillo de la mochila [" + (i + 1) + "]! <-");
                 return;
             }
-            System.out.println("-> Mochilla llena, no puedes llevar más pociones <-");
+            System.out.println("-> Bolsillo lleno, no puedes llevar más pociones <-");
         }
     }
 
@@ -38,7 +38,7 @@ public class Inventario
             }
         }
     }
-    public void consumirPocion() //(Scanner scanner) para pasarserlo por parametro desde main
+    public void consumirPocion(Personaje heroe) //(Scanner scanner) para pasarserlo por parametro desde main
     {
         Scanner scanner = new Scanner(System.in);
         revisarInventario();
@@ -52,6 +52,11 @@ public class Inventario
             {
                 System.out.println("-> Has consumido la " + items[seleccionPocion].getNombreObjeto() + " del bolsillo [" + (seleccionPocion + 1) + "]");
                 items[seleccionPocion] = null;
+                heroe.curar(items[seleccionPocion].getCantidadSanacion());
+                if (heroe.getVida() > 100)
+                {
+                    heroe.setVida(100);
+                }
             }
             else
             {

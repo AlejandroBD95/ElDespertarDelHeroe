@@ -3,18 +3,19 @@ public class Combate
 {
         public static void luchar(Personaje heroe, Personaje boss1)
     {
-        
+        int turno = 1;
         while (heroe.getVida() > 0 && boss1.getVida() > 0) 
         {
             Scanner sc = new Scanner(System.in);
-            int turno = 1;
             int eleccionTurno;
             do 
             {
-                System.out.println("Que quieres hacer en el turno " + turno);
-                System.out.println("1.Revisar inventario");
-                System.out.println("2.Tomar una poción");
-                System.out.println("3.Atacar");
+                System.out.println("****************************************");
+                System.out.println("------------TURNO" + turno);
+                System.out.println("------------1.Revisar inventario");
+                System.out.println("------------2.Tomar una poción");
+                System.out.println("------------3.Atacar");
+                System.out.println("****************************************");
                 eleccionTurno = sc.nextInt();
                 System.out.println("\n");
                 switch (eleccionTurno)
@@ -23,13 +24,22 @@ public class Combate
                         heroe.getInventario().revisarInventario();
                     break;
                     case 2:
-                        heroe.getInventario().consumirPocion();
+                        heroe.getInventario().consumirPocion(heroe);;
                     break;
                     case 3:
+                        System.out.println("*****TURNO DEL HEROE*****");
                         int danyoHeroe = heroe.atacar();
                         int vidaBossActual = (boss1.getVida() + boss1.getArmadura()) - danyoHeroe;
                         boss1.setVida(vidaBossActual);
+                        if (boss1.getVida() < 0)
+                        {
+                            boss1.setVida(0);
+                        }
                         System.out.println(heroe.getNombre() + " ataca a " + boss1.getNombre() + " infligiendo " + danyoHeroe + "PV");
+                        System.out.println("");
+                        System.out.println("La vida actual del jefe " + boss1.getNombre() + " es de " + boss1.getVida() + " PV");
+                        System.out.println("");
+                        System.out.println("*****TURNO DEL ENEMIGO*****");
                     break;
                     case 4:
                         System.out.println("Valor no registrado");
@@ -39,7 +49,24 @@ public class Combate
             int danyoBoss = boss1.atacar();
             int vidaHeroeActual = (heroe.getVida() + heroe.getArmadura()) - danyoBoss;
             heroe.setVida(vidaHeroeActual);
+            if (heroe.getVida() <0 )
+            {
+                heroe.setVida(0);
+            }
             System.out.println(boss1.getNombre() + " ataca al heroe " + heroe.getNombre() + " provocando " + danyoBoss + "PV");
+            System.out.println("");
+            System.out.println("Te quedan " + heroe.getVida() + " PV");
+            System.out.println("");
+            turno++;
+            if (boss1.getVida() == 0)
+            {
+                System.out.println("Has derrotado a " + boss1.getNombre() + "!!!");
+            }
+            else if (heroe.getVida() == 0)
+            {
+                System.out.println("Has sido derrotado...");
+                Historia.derrota();
+            }
         }     
     }
 }
