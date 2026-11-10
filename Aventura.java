@@ -20,6 +20,7 @@ public class Aventura
             do 
                 {
                 
+
                 System.out.println("1.Nueva partida");
                 System.out.println("2.Ver clasificación");
                 System.out.println("3.Ayuda");
@@ -54,19 +55,22 @@ public class Aventura
                         case 4:
                             System.out.println("Saliendo de la aventura");
                             System.out.println("");
-                        break;
+                            return;
+                        
                         default:
                             System.out.println("Valor no controlado");
                             System.out.println("");
                     }
                 }
-            while (eleccionMenu != 1 && eleccionMenu != 4);
+            while (eleccionMenu != 1);
             if(eleccionMenu == 1)
             {
+
                 System.out.println("**************************");
-                System.out.println("COMIENZA LA AVENTURA");
+                System.out.println("   COMIENZA LA AVENTURA");
                 System.out.println("**************************");
                 prepararHeroe(heroe);
+
                 System.out.println("");
 
                 Historia.introduccion();
@@ -79,6 +83,8 @@ public class Aventura
                     jugarOtravez = reiniciarPartida(sc);
                     continue;
                 }
+                Eventos.eventoAleatorio(heroe); 
+
 
                 Historia.combate2();
                 BossMago boss2 = new BossMago("Tejedor de fuego Koegler", 60, 0, 10, 15, 2);
@@ -88,6 +94,8 @@ public class Aventura
                     jugarOtravez = reiniciarPartida(sc);
                     continue;
                 }
+                Eventos.eventoAleatorio(heroe); 
+
                 
                 Historia.combate3();
                 BossFinal bossFinal = new BossFinal("Comandante Durand", 80, 2, 10, 20, 3);
@@ -99,13 +107,14 @@ public class Aventura
                 }
                 else if(heroe.getVida() >= 0)
                 {
-                    System.out.println("!ENHORABUENA HAS COMPLETADO LA AVENTURA");
+                    Historia.epilogo();
+                    System.out.println("¡¡¡ENHORABUENA HAS COMPLETADO LA AVENTURA!!!");
                 }
                 jugarOtravez = reiniciarPartida(sc);
                 }
             jugarOtravez = reiniciarPartida(sc);
-        sc.close();
-        }
+        
+        }sc.close();
     }
     public static Personaje seleccionarHeroe(Scanner sc)
         {
@@ -114,17 +123,21 @@ public class Aventura
         Mago mago = new Mago("Mago", 80, 0, 5, 15, 2);
         Personaje heroe = new Personaje(null, 0, 0, 0, 0); 
             System.out.println("\n");
-            System.out.println("Selecciona el Heroe");
+            System.out.println("=============================");
+            System.out.println("     Selecciona el Heroe");
+            System.out.println("=============================");
             System.out.println("1.Guerrero");
             guerrero.mostrarEstadisticas();
             System.out.println("");
 
             System.out.println("2.Ladron");
             ladron.mostrarEstadisticas();
+            System.out.println("Tiene la probabilidad de hacer criticos");
             System.out.println("");
                 
             System.out.println("3.Mago");
             mago.mostrarEstadisticas();
+            System.out.println("Empieza con un arma magica (+2 PA)");
             System.out.println("");
 
             int seleccionHeroe = sc.nextInt();
@@ -136,7 +149,7 @@ public class Aventura
                     System.out.println("Has escogido al guerrero");
                 break;
                 case 2:
-                    heroe = new Ladron("Ladron", 80, 0, 10, 20);
+                    heroe = new Ladron("Ladron", 75, 0, 10, 20);
                     System.out.println("Has escogido al ladron");
                 break;
                 case 3:

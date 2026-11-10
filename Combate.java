@@ -27,7 +27,7 @@ public class Combate
                         heroe.getInventario().consumirPocion(heroe);;
                     break;
                     case 3:
-                        System.out.println("*****TURNO DEL HEROE*****");
+                        System.out.println("*****---TURNO DEL HEROE---*****");
                         int danyoHeroe = heroe.atacar();
                         int vidaBossActual = (boss1.getVida() + boss1.getArmadura()) - danyoHeroe;
                         boss1.setVida(vidaBossActual);
@@ -39,13 +39,29 @@ public class Combate
                         System.out.println("");
                         System.out.println("La vida actual del jefe " + boss1.getNombre() + " es de " + boss1.getVida() + " PV");
                         System.out.println("");
-                        System.out.println("*****TURNO DEL ENEMIGO*****");
                     break;
                     case 4:
                         System.out.println("Valor no registrado");
                 }
             } while(eleccionTurno != 3);
-            
+            if (boss1.getVida() == 0)
+            {
+                System.out.println("=============================");
+                System.out.println("HAS DERROTADO A " + boss1.getNombre() + "!!!");
+                System.out.println("");
+                System.out.println("=============================");
+                return;
+            }
+            else if (heroe.getVida() == 0)
+            {
+                System.out.println("     ***     ");
+                System.out.println("Has sido derrotado...");
+                System.out.println("     ***     ");
+                Historia.derrota();
+                return;
+            }
+            System.out.println("*****---TURNO DEL ENEMIGO---*****");
+            System.out.println(" ");
             int danyoBoss = boss1.atacar();
             int vidaHeroeActual = (heroe.getVida() + heroe.getArmadura()) - danyoBoss;
             heroe.setVida(vidaHeroeActual);
@@ -58,19 +74,6 @@ public class Combate
             System.out.println("Te quedan " + heroe.getVida() + " PV");
             System.out.println("");
             turno++;
-            if (boss1.getVida() == 0)
-            {
-                System.out.println("     ***     ");
-                System.out.println("HAS DERROTADO A " + boss1.getNombre() + "!!!");
-                System.out.println("     ***     ");
-            }
-            else if (heroe.getVida() == 0)
-            {
-                System.out.println("     ***     ");
-                System.out.println("Has sido derrotado...");
-                System.out.println("     ***     ");
-                Historia.derrota();
-            }
-        }     
+        }   
     }
 }

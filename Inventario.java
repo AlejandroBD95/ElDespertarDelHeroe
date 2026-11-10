@@ -18,10 +18,11 @@ public class Inventario
             {
                 items[i] = nuevoObjeto;
                 System.out.print("-> Has guardado una " + nuevoObjeto.getNombreObjeto() + " en el bolsillo de la mochila [" + (i + 1) + "]! <-");
+                System.out.println("");
                 return;
-            }
+            }  
+        }   
             System.out.println("-> Bolsillo lleno <-");
-        }
     }
 
     public void revisarInventario()
@@ -38,7 +39,7 @@ public class Inventario
             }
         }
     }
-    public void consumirPocion(Personaje heroe) //(Scanner scanner) para pasarserlo por parametro desde main
+    public void consumirPocion(Personaje heroe) 
     {
         Scanner scanner = new Scanner(System.in);
         revisarInventario();
