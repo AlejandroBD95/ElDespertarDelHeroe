@@ -5,4 +5,16 @@
         <nombre>Sheldyn</nombre>
         <puntuacion>100</puntuacion>
     </heroe>
+    <heroe id="2">
+        <nombre>Shels</nombre>
+        <puntuacion>200</puntuacion>
+    </heroe>
+    <heroe id="3">
+        <nombre>Limo</nombre>
+        <puntuacion>354</puntuacion>
+    </heroe>
+    <heroe id="4">
+        <nombre>Luah</nombre>
+        <puntuacion>200</puntuacion>
+    </heroe>
 </clasificacion>

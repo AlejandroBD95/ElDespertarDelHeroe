@@ -33,6 +33,11 @@ public class gestorClasificacion
     {
     try
     {
+        File archivo = new File(ruta);
+        if(archivo.exists())
+        {
+            return;
+        }
         DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
         
         //fabrica.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
@@ -92,7 +97,8 @@ public class gestorClasificacion
                 }
             DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
             //fabrica.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
-            
+            fabrica.setIgnoringElementContentWhitespace(true);
+
             DocumentBuilder constructor = fabrica.newDocumentBuilder();
             Document documento = constructor.parse(archivo);
             documento.getDocumentElement().normalize();
@@ -167,6 +173,8 @@ public class gestorClasificacion
                 crearXML(ruta);
             }
             DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
+            fabrica.setIgnoringElementContentWhitespace(true);
+            
             DocumentBuilder constructor = fabrica.newDocumentBuilder();
             Document documento = constructor.parse(archivo);
 
@@ -201,9 +209,11 @@ public class gestorClasificacion
         {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-
+            transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "Clasificacion.dtd");
+            
             DOMSource fuente = new DOMSource(documento);
             StreamResult resultado = new StreamResult(new File(ruta));
             transformer.transform(fuente, resultado);

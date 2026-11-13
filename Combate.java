@@ -52,14 +52,7 @@ public class Combate
                 System.out.println("=============================");
                 return;
             }
-            else if (heroe.getVida() == 0)
-            {
-                System.out.println("     ***     ");
-                System.out.println("Has sido derrotado...");
-                System.out.println("     ***     ");
-                Historia.derrota();
-                return;
-            }
+
             System.out.println("*****---TURNO DEL ENEMIGO---*****");
             System.out.println(" ");
             int danyoBoss = boss1.atacar();
@@ -73,6 +66,14 @@ public class Combate
             System.out.println("");
             System.out.println("Te quedan " + heroe.getVida() + " PV");
             System.out.println("");
+            if (heroe.getVida() == 0)
+            {
+                System.out.println("     ***     ");
+                System.out.println("Has sido derrotado...");
+                System.out.println("     ***     ");
+                Historia.derrota();
+                return;
+            }
             turno++;
         }   
     }

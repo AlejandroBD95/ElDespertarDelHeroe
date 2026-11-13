@@ -136,8 +136,8 @@ public class Aventura
                     System.out.println("¡¡¡ENHORABUENA HAS COMPLETADO LA AVENTURA!!!");
                     enemigosDerrotados ++;
 
-                    int puntosTotales =(enemigosDerrotados * 100) + heroe.getVida();
-                    gestorClasificacion.modificarXML(rutaArchivo, heroe.getNombre(), String.valueOf(puntosTotales));
+                    int puntosTotalesFinal =(enemigosDerrotados * 100) + heroe.getVida();
+                    gestorClasificacion.modificarXML(rutaArchivo, heroe.getNombre(), String.valueOf(puntosTotalesFinal));
                 }
                 jugarOtravez = reiniciarPartida(sc);
                 }
