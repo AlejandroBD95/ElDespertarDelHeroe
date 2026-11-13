@@ -35,7 +35,7 @@ public class gestorClasificacion
     {
         DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
         
-        fabrica.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        //fabrica.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             //Crear el lector XML
         DocumentBuilder contructor = fabrica.newDocumentBuilder();
 
@@ -64,6 +64,7 @@ public class gestorClasificacion
 
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
         transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+        transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "Clasificacion.dtd");
 
         DOMSource origen = new DOMSource(documento);
 
@@ -90,7 +91,7 @@ public class gestorClasificacion
                     crearXML(ruta);
                 }
             DocumentBuilderFactory fabrica = DocumentBuilderFactory.newInstance();
-            fabrica.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            //fabrica.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
             
             DocumentBuilder constructor = fabrica.newDocumentBuilder();
             Document documento = constructor.parse(archivo);
@@ -172,7 +173,7 @@ public class gestorClasificacion
             Element raiz = documento.getDocumentElement();
 
             Element nuevoHeroe = documento.createElement("heroe");
-            
+
             NodeList lista = documento.getElementsByTagName("heroe");
             String nuevoId = String.valueOf(lista.getLength() + 1);
             nuevoHeroe.setAttribute("id", nuevoId);

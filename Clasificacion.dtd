@@ -1,0 +1,8 @@
+<!ELEMENT clasificacion (heroe+)>
+<!ELEMENT heroe (nombre, puntuacion)>
+
+<!ATTLIST heroe
+    id CDATA #REQUIRED>
+
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT puntuacion (#PCDATA)>
