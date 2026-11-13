@@ -55,7 +55,7 @@ public class Eventos
                 System.out.println("");
                 System.out.println("Continuas el camino y te encuentras con una pequeña forja mágica");
                 System.out.println("Encuentras un pequeño pergamino con la runa de un escudo");
-                System.out.println("Decides leerlo (aumenta tu armadura en +2");
+                System.out.println("Decides leerlo (aumenta tu armadura en +2)");
                 heroe.setArmadura(heroe.getArmadura() + 2);
                 System.out.println("");
             break;

@@ -4,6 +4,9 @@ public class Aventura
     
     public static void main(String[] args)
     {
+        String rutaArchivo = "clasificacion.xml";
+        gestorClasificacion.crearXML(rutaArchivo);
+
         boolean jugarOtravez = true;
         System.out.println("********** --------------------------------- **********");
         System.out.println("********** BIENVENIDO AL DESPERTAR DEL HEROE **********");
@@ -34,9 +37,23 @@ public class Aventura
                             System.out.println("Iniciando partida");
                             heroe = seleccionarHeroe(sc);
                             System.out.println("");
+
+                            sc.nextLine();
+
+                            String nombrePersona = "";
+                            while (nombrePersona.isEmpty())
+                            {
+                                System.out.println("= == == == == == == == == == == == == == == == = ");
+                                System.out.println("Indicame un nombre para tu heroe:");
+                                System.out.println("= == == == == == == == == == == == == == == == = ");
+                                nombrePersona = sc.nextLine();
+                            }
+                            heroe.setNombre(nombrePersona);
+                            System.out.println("");
                         break;
                         case 2:
                             System.out.println("Mostrando clasificación");
+                            gestorClasificacion.leerXML(rutaArchivo);
                             System.out.println("");
                         break;
                         case 3:
@@ -73,6 +90,8 @@ public class Aventura
 
                 System.out.println("");
 
+                int enemigosDerrotados = 0;
+
                 Historia.introduccion();
                 Historia.combate1();
 
@@ -80,9 +99,12 @@ public class Aventura
                 Combate.luchar(heroe, boss1);
                 if(heroe.getVida() <= 0)
                 {
+                    guardarPuntuacion (rutaArchivo, heroe, enemigosDerrotados);
                     jugarOtravez = reiniciarPartida(sc);
                     continue;
                 }
+                enemigosDerrotados ++;
+                
                 Eventos.eventoAleatorio(heroe); 
 
 
@@ -91,9 +113,11 @@ public class Aventura
                 Combate.luchar(heroe, boss2);
                 if(heroe.getVida() <= 0)
                 {
+                    guardarPuntuacion (rutaArchivo, heroe, enemigosDerrotados);       
                     jugarOtravez = reiniciarPartida(sc);
                     continue;
                 }
+                enemigosDerrotados ++;
                 Eventos.eventoAleatorio(heroe); 
 
                 
@@ -102,6 +126,7 @@ public class Aventura
                 Combate.luchar(heroe, bossFinal);
                 if(heroe.getVida() <= 0)
                 {
+                    guardarPuntuacion (rutaArchivo, heroe, enemigosDerrotados);
                     jugarOtravez = reiniciarPartida(sc);
                     continue;
                 }
@@ -109,6 +134,10 @@ public class Aventura
                 {
                     Historia.epilogo();
                     System.out.println("¡¡¡ENHORABUENA HAS COMPLETADO LA AVENTURA!!!");
+                    enemigosDerrotados ++;
+
+                    int puntosTotales =(enemigosDerrotados * 100) + heroe.getVida();
+                    gestorClasificacion.modificarXML(rutaArchivo, heroe.getNombre(), String.valueOf(puntosTotales));
                 }
                 jugarOtravez = reiniciarPartida(sc);
                 }
@@ -141,6 +170,7 @@ public class Aventura
             System.out.println("");
 
             int seleccionHeroe = sc.nextInt();
+            System.out.println("");
 
             switch (seleccionHeroe) 
             {
@@ -173,13 +203,21 @@ public class Aventura
     public static boolean reiniciarPartida(Scanner sc)
     {
         System.out.println("");
+        System.out.println("= == == == == == == == == == == == == == == == = ");
         System.out.println("¿Desea jugar de nuevo?");
         System.out.println("1. Si");
         System.out.println("2. No");
+        System.out.println("= == == == == == == == == == == == == == == == = ");
+        System.out.println("");
 
         int opcionPartida = sc.nextInt();
 
         return opcionPartida == 1;
     }
 
+    public static void guardarPuntuacion(String ruta, Personaje heroe, int enemigosDerrotados)
+    {
+        int puntosTotales = enemigosDerrotados *100;
+        gestorClasificacion.modificarXML(ruta, heroe.getNombre(), String.valueOf(puntosTotales));
+    }
 }

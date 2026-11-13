@@ -43,8 +43,9 @@ public class Inventario
     {
         Scanner scanner = new Scanner(System.in);
         revisarInventario();
-
+        System.out.println("= == == == == == == == == == == == == == == == = ");
         System.out.println("Elige el bolsillo de la poción que deseas beber");
+        System.out.println("= == == == == == == == == == == == == == == == = ");
         int seleccionPocion = scanner.nextInt()-1;
 
         if(seleccionPocion >= 0 && seleccionPocion < items.length)
@@ -52,6 +53,7 @@ public class Inventario
             if(items[seleccionPocion] != null)
             {
                 System.out.println("-> Has consumido la " + items[seleccionPocion].getNombreObjeto() + " del bolsillo [" + (seleccionPocion + 1) + "]");
+                System.out.println(" ");
                 heroe.curar(items[seleccionPocion].getCantidadSanacion());
                 items[seleccionPocion] = null;
                 if (heroe.getVida() > 100)
